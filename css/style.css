@@ -1,0 +1,61 @@
+body, button {
+	color: #fff;
+	font-family: Verdana;
+}
+#game {
+	width: 500px;
+	height: 500px;
+	border: solid 5px #660066;
+}
+
+#instruction {
+	position:absolute;
+	left: 140px;
+	top: 240px;
+	font-size: 12px;
+	color: black;
+	line-height:10px;
+}
+
+button {
+	position:absolute;
+	left: 200px;
+	width:100px;
+	height:40px;
+	font-size: 14px;
+	font-family: Impact, Charcoal, sans-serif;
+	letter-spacing: 5px;
+	background-color: #660066;
+} 
+
+h1{
+	position:absolute;
+	left: 80px;
+	top: 100px;
+	color: #660066;
+	font-family: Impact, Charcoal, sans-serif;
+	letter-spacing: 10px;
+	
+}
+
+#btnstart {
+	top: 300px;
+}
+
+#game-screen, #sequence-help, #help {
+	display:none;
+}
+
+#btnrestart {
+	top: 250px;
+	display:none;
+}
+
+#btnseq {
+	top: 300px;
+	display:none;
+}
+#btnexit {
+	top: 350px;
+	display:none;
+}

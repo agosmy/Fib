@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Wąż Fibonacciego</title>
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link rel="icon" href="images/icon.svg">
+	</head>
+	<body>
+		<div id="game">			
+			<div id="start-screen"  class="active">
+				<button id="btnstart" onclick="showScreen('start-screen', 'game-screen')"><span>Start</span></button>
+				<h1>Fibbonaci Snake</h1>
+				<span id="instruction"><p><center>Zjadaj liczby wg ciągu Fibonacciego.<br><br><b>144</b> wygrywa!</center></p></span>
+			</div>
+			<div id="game-screen"  class="inactive">
+				<button id="btnrestart" onclick="showScreen('game-screen', 'game-screen')"><span>Spróbuj ponownie</span></button>
+				<button id="btnseq" onclick="showScreen('game-screen', 'sequence-help')"><span>Ciąg Fibonacciego</span></button>
+				<button id="btnexit" onclick="showScreen('game-screen', 'start-screen')"><span>Wyjście</span></button>
+			</div>				
+			<div id="sequence-help" class="inactive">
+				<span id="help">Każdy wyraz ciągu jest sumą dwóch poprzednich.</span> 
+			</div>
+			
+			<script src="js/misc.js"></script>
+			<script src="js/game.js"></script>
+		</div>
+	</body>
+</html>
