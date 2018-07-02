@@ -7,7 +7,7 @@ var height = 500;
 var dot = {x:0, y:0, dir: 0}
 var number = {x:0, y:0, num: 0}
 var food = [];
-var segmentSize = 10;
+var segmentSize = 20;
 
 var sequence = ["Seqence:" , 0, 1]
 
@@ -42,7 +42,7 @@ function init(){
 	document.getElementById( 'startscreen' ).style.display = 'none';
 	setDot(width/2,height/2,40);
 	setFood();
-	loop = setInterval(main, 90);
+	loop = setInterval(main, 20);
 }
 
 function setDot(x,y){
@@ -63,15 +63,17 @@ function setFood(){
 }
 
 function draw(){
+	ctx.fillStyle="lightgrey";
+	ctx.fillRect(0,0,width,height);
 	
 	if (dot.dir == 1) {
-			dot.x++;
-		} else if (dot.dir == 2) {
-			dot.y++;
-		} else if (dot.dir == 3) {
 			dot.x--;
-		} else if (dot.dir == 4) {
+		} else if (dot.dir == 2) {
 			dot.y--;
+		} else if (dot.dir == 3) {
+			dot.x++;
+		} else if (dot.dir == 4) {
+			dot.y++;
 		}
 	
 	ctx.fillStyle = "#660066";
