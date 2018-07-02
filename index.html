@@ -2,34 +2,29 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Wąż Fibonacciego</title>
+		<title>Fibonacci Game</title>
 		<link rel="stylesheet" type="text/css" href="css/style.css">
 		<link rel="icon" href="images/icon.svg">
 	</head>
 	<body>
 		<div class="game">
-			<div id="canv">
-				<canvas id="game" width="500" height="500">		
+			<div id="game">
+				<canvas id="canvas" width="500" height="500">		
 				</canvas>
 			</div>
-			<div id="start-screen"  class="active">
-				<button id="btnstart" onclick="showScreen('start-screen', 'game-screen')"><span>Start</span></button>
-				<h1>Fibonacci Snake</h1>
+			<div id="startscreen">
+				<button id="btnstart">Start</button>
+				<h1>Fibonacci Game</h1>
 				<span id="instruction"><p><center>Zjadaj liczby wg ciągu Fibonacciego.<br><br><b>144</b> wygrywa!</center></p></span>
 			</div>
-			<div id="game-screen"  class="inactive">
-				<button id="btnrestart" onclick="showScreen('game-screen', 'game-screen')"><span>Spróbuj ponownie</span></button>
-				<button id="btnseq" onclick="showScreen('game-screen', 'sequence-help')"><span>Ciąg Fibonacciego</span></button>
-				<button id="btnexit" onclick="showScreen('game-screen', 'start-screen')"><span>Wyjście</span></button>
-			</div>				
-			<div id="sequence-help" class="inactive">
-				<span id="help">Każdy wyraz ciągu jest sumą dwóch poprzednich.</span> 
+			<div id="youwon" style="display: none;">
+				<h1>Fibonacci Game</h1>
+				<button id="btnagain">Wygrana!</button>
+				
 			</div>
 		</div>
 			
-		<script src="js/settings.js"></script>
 		<script src="js/game.js"></script>
-		
-		
+				
 	</body>
 </html>

@@ -11,36 +11,43 @@ var segmentSize = 10;
 
 var sequence = ["Seqence:" , 0, 1]
 
+var loop;
+
+var btn = document.getElementById('btnstart');
+btn.addEventListener("click", function () {
+        init();
+    });
+
 addEventListener("keydown", function(e){
-	if (e.keyCode == 37)
+	if (e.keyCode == 37) //left
 	{
 		dot.dir = 1;
 	}
-	if (e.keyCode == 38)
+	if (e.keyCode == 38) //up
 	{
 		dot.dir = 2;
 	}
-	if (e.keyCode == 39)
+	if (e.keyCode == 39) //right
 	{
 		dot.dir = 3;
 	}
-	if (e.keyCode == 40)
+	if (e.keyCode == 40) //down
 	{
 		dot.dir = 4;
 	}
 });
 
-var loop;
 
 function init(){
-	setDot();
+	document.getElementById( 'startscreen' ).style.display = 'none';
+	setDot(width/2,height/2,40);
 	setFood();
-	loop.setInterval(main, 90);
+	loop = setInterval(main, 90);
 }
 
 function setDot(x,y){
 	ctx.fillStyle = "#660066";
-	ctx.fllRect(x, y, segmentSize, segmentSize);
+	ctx.fillRect(x, y, segmentSize, segmentSize);
 }
 
 function setFood(){
@@ -55,8 +62,28 @@ function setFood(){
 	}
 }
 
-function update(){
-
+function draw(){
+	
+	if (dot.dir == 1) {
+			dot.x++;
+		} else if (dot.dir == 2) {
+			dot.y++;
+		} else if (dot.dir == 3) {
+			dot.x--;
+		} else if (dot.dir == 4) {
+			dot.y--;
+		}
+	
+	ctx.fillStyle = "#660066";
+	ctx.fillRect(dot.x, dot.y, segmentSize, segmentSize);
+		
+	for (var i=0; i<4; i++)
+	{
+		ctx.font="10px Verdana";
+		ctx.fillText(food[i].num, food[i].x, food[i].y);
+	}
+	
+	ctx.fillText(buildStrFromArr(sequence), 10, height-20);
 }
 
 
@@ -79,10 +106,13 @@ function checkCollision(){
 		
 		for (var i=1; i<4;i++){
 			if (dot.x == numbers[i].x && dot.y == numbers[i].y && numbers[i].num != numbers[0].num)
+				alert("Przegrana!");
+				clearInterval(loop);
+		}
 	}
 }
 
-function buildStrFromArr(array){
+function buildStrFromArr(arr){
 	var str ="";
 	for (var i = 0; i< arr.length; i++){
 		str += arr[i];
@@ -91,3 +121,6 @@ function buildStrFromArr(array){
 	return str;
 }
 
+var main = function(){
+	draw();
+}
