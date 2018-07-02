@@ -66,7 +66,7 @@ function fib_nr(){
 }
 
 function checkCollision(){
-	if (snakeX == numbers[0].x && snakeY == numbers[0].y) {
+	if (dot.x == numbers[0].x && dot.y == numbers[0].y) {
 			if (numbers[0].num == 144){
 				alert("Brawo!");
 				clearInterval(loop);
@@ -78,7 +78,7 @@ function checkCollision(){
 	else{
 		
 		for (var i=1; i<4;i++){
-			if (snakeX == numbers[i].x && snakeY == numbers[i].y && numbers[i].num != numbers[0].num)
+			if (dot.x == numbers[i].x && dot.y == numbers[i].y && numbers[i].num != numbers[0].num)
 	}
 }
 
