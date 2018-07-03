@@ -9,7 +9,7 @@ var number = {x:0, y:0, num: 0}
 var food = [];
 var segmentSize = 20;
 
-var sequence = ["Seqence:" , 0, 1]
+var sequence = ["Sequence:" , 0, 1]
 
 var loop;
 
@@ -48,14 +48,17 @@ function init(){
 }
 
 function setFood(){
-	food.push({x:Math.floor(Math.random() * 49), 
-			y:Math.floor(Math.random() * 49),
-			nr:fib_nr()});	
+	food = [];
+	var fib = fib_nr();
+	
+	food.push({x:Math.floor((Math.random() * 450)+20), 
+			y:Math.floor((Math.random() * 450)+20),
+			num:fib});	
 			
 	for (var i = 1; i<4; i++){
-		food.push({x:Math.floor((Math.random() * 25) + 1), 
-		y:Math.floor((Math.random() * 25) + 1),
-		nr:Math.floor((Math.random() * 150) + 1)});
+		food.push({x:Math.floor((Math.random() * 450) + 20), 
+		y:Math.floor((Math.random() * 450) + 20),
+		num:Math.abs(Math.floor((Math.random() * Math.min(fib*10, 150) + fib - 10)))});
 	}
 }
 
@@ -75,13 +78,16 @@ function draw(){
 	
 	ctx.fillStyle = "#660066";
 	ctx.fillRect(dot.x, dot.y, segmentSize, segmentSize);
-		
+	
+	ctx.font="20px Verdana";
+	
 	for (var i=0; i<4; i++)
 	{
-		ctx.font="10px Verdana";
-		ctx.fillText(food[i].num, food[i].x, food[i].y);
+		
+		ctx.fillText(""+food[i].num, food[i].x, food[i].y);
 	}
 	
+	ctx.font="10px Verdana";
 	ctx.fillText(buildStrFromArr(sequence), 10, height-20);
 }
 
@@ -95,12 +101,13 @@ function checkCollision(){
 	if (dot.x < 0 || dot.x > (width-segmentSize) || dot.y < 0 || dot.y > (height-segmentSize))
 		end("Przegrana!");
 	
-	if (dot.x == numbers[0].x && dot.y == numbers[0].y) {
-			if (numbers[0].num == 144){
+	if (dot.x == food[0].x && dot.y == food[0].y) {
+			if (food[0].num == 144){
 				end("Brawo!");
 			}
 			else{
 				sequence.push(number[0].num);
+				setFood();
 			}
 	}
 	else{
