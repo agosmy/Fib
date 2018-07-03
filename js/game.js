@@ -9,7 +9,7 @@ var number = {x:0, y:0, num: 0}
 var food = [];
 var segmentSize = 20;
 
-var sequence = ["Sequence:" , 0, 1]
+var sequence = ["Sequence:" , 0, 1];
 
 var loop;
 
@@ -44,7 +44,8 @@ function init(){
 	dot.y = (height/2);
 	dot.dir = 0;
 	setFood();
-	loop = setInterval(main, 20);
+	sequence = ["Sequence:" , 0, 1]
+	loop = setInterval(main, 10);
 }
 
 function setFood(){
@@ -101,20 +102,34 @@ function checkCollision(){
 	if (dot.x < 0 || dot.x > (width-segmentSize) || dot.y < 0 || dot.y > (height-segmentSize))
 		end("Przegrana!");
 	
-	if (dot.x == food[0].x && dot.y == food[0].y) {
+	if (dot.x + segmentSize/2 >= food[0].x 
+		&& dot.x + segmentSize/2 < (food[0].x + 10) 
+		&& dot.y + segmentSize/2 >= food[0].y 
+		&& dot.y + segmentSize/2 < (food[0].y + 10)){
 			if (food[0].num == 144){
 				end("Brawo!");
 			}
 			else{
-				sequence.push(number[0].num);
+				sequence.push(food[0].num);
 				setFood();
 			}
 	}
 	else{
 		
 		for (var i=1; i<4;i++){
-			if (dot.x == numbers[i].x && dot.y == numbers[i].y && numbers[i].num != numbers[0].num)
+			if (dot.x + segmentSize/2 >= food[i].x 
+				&& dot.x + segmentSize/2 < (food[i].x + 10) 
+				&& dot.y + segmentSize/2 >= food[i].y 
+				&& dot.y + segmentSize/2 < (food[i].y + 10)
+				&& food[i].num != food[0].num)
 				end("Przegrana!");
+			if (dot.x + segmentSize/2 >= food[i].x 
+				&& dot.y + segmentSize/2 >= food[i].y 
+				&& food[i].num == food[0].num)
+			{
+				sequence.push(food[0].num);
+				setFood();
+			}
 		}
 	}
 }

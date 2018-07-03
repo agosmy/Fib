@@ -10,7 +10,7 @@ body, button {
 
 #instruction {
 	position:absolute;
-	left: 140px;
+	left: 90px;
 	top: 240px;
 	font-size: 12px;
 	color: black;
@@ -39,23 +39,5 @@ h1{
 }
 
 #btnstart {
-	top: 300px;
-}
-
-#game-screen, #sequence-help, #help {
-	display:none;
-}
-
-#btnrestart {
-	top: 250px;
-	display:none;
-}
-
-#btnseq {
-	top: 300px;
-	display:none;
-}
-#btnexit {
 	top: 350px;
-	display:none;
 }
