@@ -42,9 +42,9 @@ function init(){
 	document.getElementById( 'startscreen' ).style.display = 'none';
 	dot.x = (width/2);
 	dot.y = (height/2);
+	sequence = ["Sequence:" , 0, 1]
 	dot.dir = 0;
 	setFood();
-	sequence = ["Sequence:" , 0, 1]
 	loop = setInterval(main, 10);
 }
 
@@ -102,10 +102,10 @@ function checkCollision(){
 	if (dot.x < 0 || dot.x > (width-segmentSize) || dot.y < 0 || dot.y > (height-segmentSize))
 		end("Przegrana!");
 	
-	if (dot.x + segmentSize/2 >= food[0].x 
-		&& dot.x + segmentSize/2 < (food[0].x + 10) 
-		&& dot.y + segmentSize/2 >= food[0].y 
-		&& dot.y + segmentSize/2 < (food[0].y + 10)){
+	if (dot.x + segmentSize/2 >= food[0].x-10
+		&& dot.x + segmentSize/2 < (food[0].x-10 + 30) 
+		&& dot.y + segmentSize/2 >= food[0].y-10 
+		&& dot.y + segmentSize/2 < (food[0].y-10 + 30)){
 			if (food[0].num == 144){
 				end("Brawo!");
 			}
@@ -117,14 +117,16 @@ function checkCollision(){
 	else{
 		
 		for (var i=1; i<4;i++){
-			if (dot.x + segmentSize/2 >= food[i].x 
-				&& dot.x + segmentSize/2 < (food[i].x + 10) 
-				&& dot.y + segmentSize/2 >= food[i].y 
-				&& dot.y + segmentSize/2 < (food[i].y + 10)
+			if (dot.x + segmentSize/2 >= food[i].x-10 
+				&& dot.x + segmentSize/2 < (food[i].x-10 + 30) 
+				&& dot.y + segmentSize/2 >= food[i].y-10 
+				&& dot.y + segmentSize/2 < (food[i].y-10 + 30)
 				&& food[i].num != food[0].num)
 				end("Przegrana!");
-			if (dot.x + segmentSize/2 >= food[i].x 
-				&& dot.y + segmentSize/2 >= food[i].y 
+			if (dot.x + segmentSize/2 >= food[i].x-10 
+				&& dot.x + segmentSize/2 < (food[i].x-10 + 30) 
+				&& dot.y + segmentSize/2 >= food[i].y-10 
+				&& dot.y + segmentSize/2 < (food[i].y-10 + 30)
 				&& food[i].num == food[0].num)
 			{
 				sequence.push(food[0].num);
@@ -144,6 +146,7 @@ function buildStrFromArr(arr){
 	var str ="";
 	for (var i = 0; i< arr.length; i++){
 		str += arr[i];
+		str += " ";
 	}
 	
 	return str;
