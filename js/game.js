@@ -40,14 +40,11 @@ addEventListener("keydown", function(e){
 
 function init(){
 	document.getElementById( 'startscreen' ).style.display = 'none';
-	setDot(width/2,height/2,40);
+	dot.x = (width/2);
+	dot.y = (height/2);
+	dot.dir = 0;
 	setFood();
 	loop = setInterval(main, 20);
-}
-
-function setDot(x,y){
-	ctx.fillStyle = "#660066";
-	ctx.fillRect(x, y, segmentSize, segmentSize);
 }
 
 function setFood(){
@@ -63,7 +60,7 @@ function setFood(){
 }
 
 function draw(){
-	ctx.fillStyle="lightgrey";
+	ctx.fillStyle="white";
 	ctx.fillRect(0,0,width,height);
 	
 	if (dot.dir == 1) {
@@ -95,10 +92,12 @@ function fib_nr(){
 }
 
 function checkCollision(){
+	if (dot.x < 0 || dot.x > (width-segmentSize) || dot.y < 0 || dot.y > (height-segmentSize))
+		end("Przegrana!");
+	
 	if (dot.x == numbers[0].x && dot.y == numbers[0].y) {
 			if (numbers[0].num == 144){
-				alert("Brawo!");
-				clearInterval(loop);
+				end("Brawo!");
 			}
 			else{
 				sequence.push(number[0].num);
@@ -108,10 +107,15 @@ function checkCollision(){
 		
 		for (var i=1; i<4;i++){
 			if (dot.x == numbers[i].x && dot.y == numbers[i].y && numbers[i].num != numbers[0].num)
-				alert("Przegrana!");
-				clearInterval(loop);
+				end("Przegrana!");
 		}
 	}
+}
+
+function end(msg){
+	clearInterval(loop);
+	if (confirm(msg + " Jeszcze raz?"))
+		init();
 }
 
 function buildStrFromArr(arr){
@@ -125,4 +129,5 @@ function buildStrFromArr(arr){
 
 var main = function(){
 	draw();
+	checkCollision();
 }
